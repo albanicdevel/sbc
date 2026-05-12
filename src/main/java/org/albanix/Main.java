@@ -25,17 +25,10 @@ public class Main {
 
         Map<String, ICommand> commands = new HashMap<>();
         CommandDispatcher commandDispatcher = new CommandDispatcher(commands, configManager);
-        commandDispatcher.init();
-
         JDA jda = JDABuilder.createDefault(configManager.getToken())
                 .addEventListeners(commandDispatcher)
                 .build();
 
-        var commandsList = commands.values()
-                .stream()
-                .map(ICommand::getCommandData)
-                .toList();
-
-        jda.updateCommands().addCommands(commandsList).queue();
+        commandDispatcher.init(jda);
     }
-}//
+}
