@@ -38,4 +38,4 @@ public class Main {
 
         jda.updateCommands().addCommands(commandsList).queue();
     }
-}
+}//
