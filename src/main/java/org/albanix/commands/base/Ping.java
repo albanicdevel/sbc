@@ -13,11 +13,11 @@ public class Ping implements ICommand {
 
     @Override
     public CommandData getCommandData() {
-        return Commands.slash(getName(), "test");
+        return Commands.slash(getName(), "Привітається з вами!");
     }
 
     @Override
     public void execute(CommandContext ctx) {
-        ctx.reply("hi!");
+        ctx.reply("О, привіт! <@" + ctx.getEvent().getUser().getId() + ">");
     }
 }

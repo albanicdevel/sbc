@@ -9,20 +9,19 @@ import org.albanix.commands.repo.CommandRegistry;
 import org.albanix.config.ConfigManager;
 import org.albanix.events.ICommand;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class CommandDispatcher extends ListenerAdapter {
-    private final Map<String, ICommand> commands;
     private final ConfigManager config;
     CommandRegistry registry;
 
-    public CommandDispatcher(Map<String, ICommand> commands, ConfigManager config) {
-        this.commands = commands;
+    public CommandDispatcher(ConfigManager config) {
         this.config = config;
     }
 
     public void init(JDA jda) {
-        this.registry =  new CommandRegistry(commands);
+        this.registry =  new CommandRegistry(new HashMap<>());
 
         registry.register(new Ping());
         registry.append(jda);
