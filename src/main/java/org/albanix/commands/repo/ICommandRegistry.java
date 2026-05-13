@@ -1,6 +1,7 @@
 package org.albanix.commands.repo;
 
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import org.albanix.events.ICommand;
 import org.jetbrains.annotations.NotNull;
@@ -12,5 +13,6 @@ public interface ICommandRegistry {
     void register(@NotNull ICommand... commands);
     ICommand getCommand(String name);
     Collection<CommandData> getCommandData();
+    Permission[] getPermission(String commandName);
     void append(JDA jda);
 }
