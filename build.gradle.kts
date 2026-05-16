@@ -13,6 +13,7 @@ dependencies {
     implementation("net.dv8tion:JDA:6.4.1")
     implementation("org.spongepowered:configurate-yaml:4.2.0")
     implementation("ch.qos.logback:logback-classic:1.5.6")
+    implementation("org.reflections:reflections:0.10.2")
 }
 
 tasks.test {
