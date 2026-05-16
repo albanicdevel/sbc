@@ -10,5 +10,5 @@ public interface QCommand {
     default Set<Permission> getRequiredPermissions() {
         return Set.of();
     }
-    void execute();
+    QCommandResult execute(QCommandContext ctx);
 }
