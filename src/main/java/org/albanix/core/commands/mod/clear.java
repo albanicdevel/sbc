@@ -3,7 +3,7 @@ package org.albanix.core.commands.mod;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
-import org.albanix.api.commands.QCommand;
+import org.albanix.api.interfaces.QCommand;
 
 import java.util.Set;
 

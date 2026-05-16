@@ -1,4 +1,4 @@
-package org.albanix.api.commands;
+package org.albanix.api.interfaces;
 
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
@@ -14,3 +14,7 @@ public interface QCommandContext {
     MessageChannelUnion getChannel();
     Optional<Guild> getGuild();
 }
+
+/*
+    Контекст для зручної взаємодії між вами та discord - api
+ */
