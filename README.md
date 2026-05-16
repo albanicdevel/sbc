@@ -2,7 +2,6 @@
 
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
-
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/albanicdevel/sbc">
 <img alt="GitHub Release" src="https://img.shields.io/github/v/release/albanicdevel/sbc">
 
