@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ConfigManager configManager = new ConfigManager();
 
         try {
@@ -20,10 +20,11 @@ public class Main {
             log.error(e.getMessage());
         }
 
-        Dispatcher dispatcher = new Dispatcher("org.albanix.core.commands");
+        Dispatcher dispatcher = new Dispatcher();
         JDA jda = JDABuilder.createDefault(configManager.getToken())
                 .addEventListeners(dispatcher)
                 .build();
+        jda.awaitReady();
         jda.updateCommands().addCommands(dispatcher.getCommandData()).queue();
     }
 }

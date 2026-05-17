@@ -5,9 +5,11 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import org.albanix.api.client.channel.TextResult;
+import org.albanix.api.commands.CommandModule;
 import org.albanix.api.interfaces.QCommand;
 import org.albanix.api.interfaces.QCommandContext;
 import org.albanix.api.interfaces.QCommandResult;
+import org.albanix.core.modules.CoreModules;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +24,11 @@ public class Dispatcher extends ListenerAdapter {
     private final Map<String, QCommand> commandsMap = new HashMap<>();
 
     public Dispatcher() {
+        CoreModules coreModules = new CoreModules();
+        coreModules.configure();
+        registerModule(coreModules);
     }
+
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         String name = event.getName();
@@ -53,6 +59,13 @@ public class Dispatcher extends ListenerAdapter {
 
     private void register(QCommand command) {
         commandsMap.put(command.getData().getName(), command);
+    }
+
+    private void registerModule(CommandModule module) {
+        for(QCommand command : module.getModuleCommand()) {
+            register(command);
+            log.info("Команда [/{}] зареєстрована!", command.getData().getName());
+        }
     }
 
     public List<CommandData> getCommandData() {
