@@ -1,6 +1,5 @@
 package org.albanix.api.interaction;
 
-import kotlin.jvm.internal.Reflection;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -9,7 +8,6 @@ import org.albanix.api.client.channel.TextResult;
 import org.albanix.api.interfaces.QCommand;
 import org.albanix.api.interfaces.QCommandContext;
 import org.albanix.api.interfaces.QCommandResult;
-import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,19 +21,7 @@ public class Dispatcher extends ListenerAdapter {
     private static final Logger log = LoggerFactory.getLogger(Dispatcher.class);
     private final Map<String, QCommand> commandsMap = new HashMap<>();
 
-    public Dispatcher(String packageName) {
-        Reflections reflections = new Reflections(packageName);
-        Set<Class<? extends QCommand>> commandClasses = reflections.getSubTypesOf(QCommand.class);
-        for(Class<? extends QCommand> clazz : commandClasses) {
-            try {
-                QCommand command = clazz.getDeclaredConstructor().newInstance();
-                register(command);
-                Dispatcher.log.info("Команда [/{}] успішно зареєстровано успішно!", command.getData().getName());
-            } catch (Exception e) {
-                log.info("Не можливо зареєструвати: {}", clazz.getName());
-                e.getStackTrace();
-            }
-        }
+    public Dispatcher() {
     }
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
