@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         ConfigManager configManager = new ConfigManager();
 
         try {
@@ -24,7 +24,7 @@ public class Main {
         JDA jda = JDABuilder.createDefault(configManager.getToken())
                 .addEventListeners(dispatcher)
                 .build();
-        jda.awaitReady();
-        jda.updateCommands().addCommands(dispatcher.getCommandData()).queue();
+
+        jda.updateCommands().addCommands(dispatcher.getRegistry().getData()).queue();
     }
 }

@@ -16,9 +16,9 @@ public abstract class CommandModule {
 
     }
 
-    protected abstract void configure();
+    public abstract void configure();
 
-    protected void registerCommands(QCommand... commands) {
+    public void registerCommands(QCommand... commands) {
         this.moduleCommand.addAll(List.of(commands));
     }
 
